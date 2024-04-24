@@ -17,7 +17,7 @@ This project presents a comprehensive fire prediction system leveraging the Inte
 ## How It Works
 
 1. The system continuously monitors color sensor readings and analyzes them using a custom neural network model.
-2. Simultaneously, the MQ-2 gas sensor detects flammable gases or smoke.
+2. Simultaneously, the MQ-2 gas sensor detects flammable gases/smoke.
 3. Under normal circumstances, the LCD screen displays temperature and humidity.
 4. If the fire prediction probability exceeds 90% or the gas concentration exceeds 400 ppm, the system triggers immediate alerts.
 5. An audible buzzer sounds, and a clear message indicating the threat is displayed on the LCD screen.
