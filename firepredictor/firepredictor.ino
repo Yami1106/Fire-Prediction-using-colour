@@ -33,6 +33,8 @@ int i=0;
 
 void setup() {
   Serial.begin(9600);
+  Serial1.begin(9600);
+
   while (!Serial) {}
 
   pinMode(buzz, OUTPUT);
@@ -66,6 +68,8 @@ void loop() {
   char alert[]="Fire Alert!!!";
   char action[]="Take Action ASAP";
   char safe[]="No Fire Safe :)";
+  float firepercent;
+  float nofirepercent;
 
   while (!APDS.colorAvailable() || !APDS.proximityAvailable()) {}
 
@@ -132,7 +136,6 @@ void loop() {
       Serial.println("Invoke failed!");
       while (true) {}
     }
-
     for (int i = 0; i < 2; i++) {
       Serial.print(classes[i]);
       Serial.print(" ");
@@ -141,7 +144,10 @@ void loop() {
     }
     Serial.println();
 
-    if (int(tflOutputTensor->data.f[0] * 100) > 90 || mq2Value >= 400) {
+    firepercent=tflOutputTensor->data.f[0]*100;
+    nofirepercent=tflOutputTensor->data.f[1]*100;
+
+    if (int(firepercent) > 90 || mq2Value >= 400) {
       tone(buzz, 15000);
       lcd.clear();
       for(i=0;i<strlen(alert);i++){
@@ -152,7 +158,7 @@ void loop() {
         lcd.setCursor(i,1);
         lcd.print(action[i]);
       }
-    } else if (int(tflOutputTensor->data.f[1] * 100) > 60) {
+    } else if (int(nofirepercent) > 60) {
       noTone(buzz);
       for(i=0;i<strlen(safe);i++){
       lcd.setCursor(i,1);
@@ -161,6 +167,8 @@ void loop() {
     }
     delay(1000);
   }
+  String sentdata= String(temp) + "," + String(hum) + "," + String(mq2Value) + "," +String(firepercent) + "," + String(nofirepercent);
+  Serial1.println(sentdata);
 }
 
 
