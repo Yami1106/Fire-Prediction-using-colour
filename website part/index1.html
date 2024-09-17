@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fire Detection</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=poppins:wght@400;600;700& display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+
+        }
+
+        body {
+            background-color: rgb(0, 0, 32);
+            color: white;
+            font-family: 'poppins', sans-serif;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 80px;
+            background-color: rgb(18, 18, 77);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            list-style: none;
+            margin: 0 23px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white
+        }
+
+        nav ul li a:hover {
+            color: rgb(153, 153, 226);
+            font-size: 1.04rem;
+        }
+
+        main hr {
+            border: 0;
+            background: #9c97f1;
+            height: 1.2px;
+            margin: 60px 84px;
+        }
+
+        .left {
+            font-size: 1.5rem;
+        }
+
+        .firstsection {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 150px 0;
+        }
+
+        .firstsection>div {
+            width: 30%;
+            margin: 30px 0;
+        }
+
+        .leftsection {
+            font-size: 3rem;
+            margin: 30px 0;
+        }
+
+        .rightsection img {
+            width: 70%;
+            margin: 10px 0;
+        }
+
+        .purple {
+            color: rgb(170, 107, 228);
+        }
+
+        .text-gray {
+            color: gray;
+        }
+
+        #element {
+            color: rgb(170, 107, 228);
+        }
+
+        .secondSection {
+            max-width: 80vw;
+            margin: auto;
+        }
+
+        .secondsection h1 {
+            font-size: 1.6rem;
+            margin:auto;
+        }
+
+        table {
+            width: 1000px;
+            border-top-width: 10px;
+            border-bottom-width: 10px;
+            border-left-width: 10px;
+            border-right-width: 10px;
+            
+        }
+        
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="left">FIRE ALERT</div>
+            <div class="right">
+                <ul>
+                    <li><a href="">Home</a></li>
+                    <li><a href="E:\website development learning\Description.txt" target="_blank">Description</a></li>
+                    <li><a href="/">To Do(HELP)</a></li>
+                    <li><a href="fire.png">Emergency Contact</a></li>
+
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="firstsection">
+            <div class="leftsection">
+                Hi,This is a website for fire detection
+                <div>!!<span class="purple">Look at </span>the <span class="purple">top</span> of the page <span
+                        class="purple">for help </span>!!</div>
+                <span id="element"></span>
+            </div>
+            <div class="rightsection">
+                <img src="main.png">
+            </div>
+        </section>
+        <hr>
+        <section class="secondSection">
+            <span class="text-gray">!!! IMPORTANT !!!</span>
+            <h1>IMPORTANT NUMBERS</h1>
+            <table width="1000px" border="1px">
+                <tr>
+                    <td>GOVERNMENT BODY</td>
+                    <td>NUMBER</td>
+                </tr>
+                <tr>
+                    <td>FIRE DEPARTMENT</td>
+                    <td>101</td>
+                </tr>
+                <tr>
+                    <td>POLICE</td>
+                    <td>100</td>
+                </tr>
+                <tr>
+                    <td>AMBULANCE</td>
+                    <td>108</td>
+                </tr>
+            </table>
+
+
+
+        </section>
+    </main>
+
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <!-- Setup and start animation! -->
+    <script>
+        var typed = new Typed('#element', {
+            strings: ['Call Fire Department-101', 'Call Ambulance-108', 'Call Police-100'],
+            typeSpeed: 50,
+        });
+    </script>
+</body>
+
+</html>
