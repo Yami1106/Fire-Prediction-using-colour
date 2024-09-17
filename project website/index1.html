@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fire Detection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css"> <!-- Link to local CSS file -->
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="left">FIRE ALERT</div>
+            <div class="right">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#description">Description</a></li>
+                    <li><a href="#todo">To Do</a></li>
+                    <li><a href="images/fire.png">Emergency Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="firstsection">
+            <div class="leftsection">
+                Hi, This is a website for fire detection.
+                <div>!!<span class="purple">Look at </span>the <span class="purple">top</span> of the page <span
+                        class="purple">for help </span>!!</div>
+                <span id="element"></span>
+            </div>
+            <div class="rightsection">
+                <img src="images/main.png" alt="Fire Detection Image" class="parallax-img"> <!-- Parallax effect added -->
+            </div>
+        </section>
+
+        <hr>
+
+        <!-- Description Section -->
+        <section id="description" class="secondSection fade-in">
+            <h1>Description</h1>
+            <p class="section-text">
+                The Fire Detection system is designed to monitor and detect fire hazards in real-time. By leveraging
+                advanced technologies such as thermal imaging, smoke detection, and sensor networks, this system aims
+                to provide early warnings before fires spread. Additionally, this platform includes automated emergency
+                services contact information to help streamline responses and save lives during critical situations.
+                <br><br>
+                With constant monitoring and live alerts, users can take proactive measures to secure their premises.
+                The system is highly adaptable, working in both residential and industrial settings, ensuring maximum
+                safety.
+            </p>
+        </section>
+
+        <hr>
+
+        <!-- To Do Section -->
+        <section id="todo" class="secondSection fade-in">
+            <h1>To Do (Help)</h1>
+            <ul class="section-text">
+                <li>Develop and optimize the fire detection algorithm for different environments.</li>
+                <li>Integrate live alerts using SMS, emails, and push notifications for faster communication.</li>
+                <li>Test and monitor the system in various conditions to ensure accuracy and reliability.</li>
+                <li>Create user-friendly documentation and tutorials to help users effectively utilize the system.</li>
+                <li>Introduce multilingual support to cater to a global audience.</li>
+            </ul>
+        </section>
+
+        <hr>
+
+        <!-- Emergency Numbers Section -->
+        <section class="secondSection">
+            <span class="text-gray">!!! IMPORTANT !!!</span>
+            <h1>Important Numbers</h1>
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>GOVERNMENT BODY</th>
+                        <th>NUMBER</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>FIRE DEPARTMENT</td>
+                        <td>101</td>
+                    </tr>
+                    <tr class="active-row">
+                        <td>POLICE</td>
+                        <td>100</td>
+                    </tr>
+                    <tr>
+                        <td>AMBULANCE</td>
+                        <td>108</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="scripts/typed.js"></script> <!-- Link to local Typed.js file -->
+    <script>
+        // Typed.js animation for the rotating text
+        var typed = new Typed('#element', {
+            strings: ['Call Fire Department-101', 'Call Ambulance-108', 'Call Police-100'],
+            typeSpeed: 50,
+        });
+
+        // Smooth scroll functionality with delay
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetElement = document.querySelector(this.getAttribute('href'));
+
+                // Smooth scroll to the element
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80, // Adjust for fixed header height
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Parallax effect
+        window.addEventListener('scroll', function () {
+            let scrollPosition = window.pageYOffset;
+            document.querySelector('.parallax-img').style.transform = 'translateY(' + scrollPosition * 0.5 + 'px)';
+        });
+
+        // Fade in and out effects for sections
+        const fadeInElements = document.querySelectorAll('.fade-in');
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY + window.innerHeight;
+            fadeInElements.forEach(element => {
+                if (scrollPosition > element.offsetTop + 100) { // +100 to ensure the effect starts a bit earlier
+                    element.classList.add('fade-in-visible');
+                } else {
+                    element.classList.remove('fade-in-visible');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
