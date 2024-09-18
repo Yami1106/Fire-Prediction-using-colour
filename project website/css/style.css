@@ -122,7 +122,7 @@ nav ul li a:hover {
     margin: 50px auto; /* Added margin */
     padding: 50px; /* Added padding */
     max-width: 1200px; /* Set max-width to center the content */
-    text-align: center;
+    /* text-align: center; */
     opacity: 0;
     transform: translateY(30px); /* Initial position */
     transition: opacity 0.5s ease, transform 0.5s ease;
