@@ -1,2 +1,0 @@
-resources used:
-1.https://github.com/mattboldt/typed.js
