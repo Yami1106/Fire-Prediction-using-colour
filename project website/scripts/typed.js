@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
         backDelay: 1000, // Optional: Adds a delay before starting backspacing
         startDelay: 500, // Optional: Adds a delay before starting the typing
         loop: true, // Optional: Loops the typing animation
-        showCursor: true // Optional: Shows the blinking cursor
+        showCursor: false // Optional: Shows the blinking cursor
     });
 
     // Smooth scroll functionality with delay
