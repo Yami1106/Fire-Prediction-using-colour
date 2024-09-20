@@ -56,7 +56,7 @@ if (isset($_POST["temperature"]) && isset($_POST["humidity"]) && isset($_POST["m
 }
 
 
-$sql="INSERT INTO sensor_data (temperature,humidity,mq2_value,fire_percent,no_fire_percent)  VALUES(?,?,?,?,?)";
+$sql="INSERT INTO sensor_data (temperature,humidity,mq2_value,fire_percent,no_fire_percent)  VALUES('".$t."','".$h."','".$m."','".$f."','".$nf."')";
 
 if (mysqli_query($conn,$sql)){
     echo "new record created";
