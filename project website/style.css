@@ -15,6 +15,13 @@ body {
 
 /* Sticky header with smooth transition */
 /* Sticky header with smooth transition */
+
+#navibar{
+    position: sticky;
+    top: 0;
+    overflow: hidden;
+    background-color: #333;
+}
 nav {
     display: flex;
     justify-content: space-between;
