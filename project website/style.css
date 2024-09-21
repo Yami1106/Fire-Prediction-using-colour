@@ -211,3 +211,16 @@ table.colorful-table tbody tr.lightbrown-row {
 table.colorful-table tbody tr.yellow-row {
     background-color: yellow;
 }
+
+
+
+.project-progress-scroll{
+    max-width: 600px;
+    outline: 3px solid lime;
+}
+
+
+.prog-scroller{
+    display: flex;
+    gap: 1rem;
+}
