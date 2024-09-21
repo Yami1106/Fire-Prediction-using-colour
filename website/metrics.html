@@ -1,0 +1,160 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <style>
+    html {
+      font-family: Arial, sans-serif;
+      display: inline-block;
+      margin: 0px auto;
+      text-align: center;
+      color: #ffffff;
+    }
+
+    body {
+      background: linear-gradient(120deg, rgb(0, 0, 32), rgb(18, 18, 77));
+      margin: 0;
+      padding: 20px;
+    }
+
+    h2 {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    p {
+      font-size: 2.5rem;
+      margin: 20px 0;
+    }
+
+    .units {
+      font-size: 1.5rem;
+      vertical-align: super;
+    }
+
+    .dht-labels {
+      font-size: 1.8rem;
+      vertical-align: middle;
+      padding-bottom: 15px;
+      font-weight: bold;
+    }
+
+    .icon {
+      margin-right: 10px;
+    }
+
+    .update-indicator {
+      font-size: 1rem;
+      color: #ffcc00;
+      margin-bottom: 10px;
+    }
+
+    .refresh-button {
+      background-color: #059e8a;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      border-radius: 5px;
+      margin-top: 20px;
+    }
+
+    .refresh-button:hover {
+      background-color: #048f7a;
+    }
+
+    .last-updated {
+      font-size: 1rem;
+      margin-top: 10px;
+      color: #cccccc;
+    }
+
+    .loading-spinner {
+      display: none;
+      font-size: 2rem;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>ESP32 DHT Server</h2>
+  <div class="update-indicator" id="update-indicator">Updating...</div>
+
+  <p>
+    <i class="fas fa-thermometer-half icon" style="color:#059e8a;"></i>
+    <span class="dht-labels">Temperature</span>
+    <span id="temperature">36</span>
+    <sup class="units">&deg;C</sup>
+    <div class="loading-spinner" id="loading-temperature"><i class="fas fa-spinner fa-spin"></i></div>
+  </p>
+
+  <p>
+    <i class="fas fa-tint icon" style="color:#00add6;"></i>
+    <span class="dht-labels">Humidity</span>
+    <span id="humidity">61</span>
+    <sup class="units">%</sup>
+    <div class="loading-spinner" id="loading-humidity"><i class="fas fa-spinner fa-spin"></i></div>
+  </p>
+
+  <button class="refresh-button" onclick="manualRefresh()">Refresh Now</button>
+  <div class="last-updated" id="last-updated">Last updated: --:--:--</div>
+
+  <script>
+    function updateTemperature() {
+      document.getElementById("loading-temperature").style.display = "inline-block";
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("temperature").innerHTML = this.responseText;
+          document.getElementById("loading-temperature").style.display = "none";
+        }
+      };
+      xhttp.open("GET", "temperature", true);
+      xhttp.send();
+    }
+
+    function updateHumidity() {
+      document.getElementById("loading-humidity").style.display = "inline-block";
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("humidity").innerHTML = this.responseText;
+          document.getElementById("loading-humidity").style.display = "none";
+        }
+      };
+      xhttp.open("GET", "humidity", true);
+      xhttp.send();
+    }
+
+    function updateTime() {
+      var now = new Date();
+      document.getElementById("last-updated").innerHTML = "Last updated: " + now.toLocaleTimeString();
+    }
+
+    function manualRefresh() {
+      document.getElementById("update-indicator").style.display = "block";
+      updateTemperature();
+      updateHumidity();
+      updateTime();
+      setTimeout(function () {
+        document.getElementById("update-indicator").style.display = "none";
+      }, 2000);
+    }
+
+    setInterval(function () {
+      manualRefresh();
+    }, 10000); // Auto-refresh every 10 seconds
+
+    // Initial load
+    manualRefresh();
+  </script>
+</body>
+
+</html>
+
