@@ -11,7 +11,7 @@
     html {
       font-family: Arial, sans-serif;
       display: inline-block;
-      margin: 0px auto;
+      margin: 168px auto;
       text-align: center;
       color: #ffffff;
     }
@@ -85,6 +85,7 @@
 </head>
 
 <body>
+  <section class="firstsection">
   <h2>ESP32 DHT Server</h2>
   <div class="update-indicator" id="update-indicator">Updating...</div>
 
@@ -106,6 +107,7 @@
 
   <button class="refresh-button" onclick="manualRefresh()">Refresh Now</button>
   <div class="last-updated" id="last-updated">Last updated: --:--:--</div>
+
 
   <script>
     function updateTemperature() {
@@ -155,7 +157,9 @@
 
     // Initial load
     manualRefresh();
+    
   </script>
+  </section>
 </body>
 
 </html>
