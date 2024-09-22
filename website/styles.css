@@ -224,3 +224,22 @@ table.colorful-table tbody tr.yellow-row {
     display: flex;
     gap: 1rem;
 }
+#navbar .right ul li a i {
+    margin-right: 5px;
+}
+
+#navbar .right ul li a {
+    display: flex;
+    align-items: center;
+}
+#navbar .left {
+    display: flex;
+    align-items: center;
+}
+
+#navbar .left .nav-logo {
+    height: 10px;
+    width: auto;
+    margin-right: 10px;
+    vertical-align: middle; 
+}
