@@ -13,8 +13,16 @@ body {
     scroll-behavior: smooth;
 }
 
-/* Sticky header with smooth transition */
-/* Sticky header with smooth transition */
+
+#navi-bar{
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    color: #ef0e0e;
+    font-size: 20px;
+    font-weight: bold;
+}
+
 nav {
     display: flex;
     justify-content: space-between;
