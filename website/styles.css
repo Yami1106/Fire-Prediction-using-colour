@@ -124,6 +124,7 @@ nav ul li a:hover {
     max-width: 1200px; /* Set max-width to center the content */
     /* text-align: center; */
     opacity: 0;
+    text-align: justify;
     transform: translateY(30px); /* Initial position */
     transition: opacity 0.5s ease, transform 0.5s ease;
 }
@@ -174,7 +175,7 @@ nav ul li a:hover {
 /* Colorful table styles */
 .table-container {
     display: flex;
-    justify-content: center;
+    justify-content: auto;
     margin-top: 50px; /* Added margin */
 }
 
@@ -243,3 +244,4 @@ table.colorful-table tbody tr.yellow-row {
     margin-right: 10px;
     vertical-align: middle; 
 }
+
