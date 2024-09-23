@@ -22,4 +22,4 @@ This project presents a comprehensive fire prediction system leveraging the Inte
 3. Under normal circumstances, the LCD screen displays temperature and humidity.
 4. If the fire prediction probability exceeds 90% or the gas concentration exceeds 400 ppm, the system triggers immediate alerts.
 5. An audible buzzer sounds, and a clear message indicating the threat is displayed on the LCD screen.
- 
+  
