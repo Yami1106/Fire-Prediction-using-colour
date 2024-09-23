@@ -253,3 +253,14 @@ table.colorful-table tbody tr.yellow-row {
     vertical-align: middle; 
 }
 
+
+
+/* extra added */
+.container{
+    width: 100%;
+}
+
+.container>div{
+    display: inline-block;
+    height: 300px;
+    width: 30%;
