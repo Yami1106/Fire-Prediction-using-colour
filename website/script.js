@@ -53,4 +53,16 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         };
     });
+
+    const scrollableDiv = document.querySelector('.slide-track');
+    if (scrollableDiv) {
+        scrollableDiv.addEventListener('mouseover', () => {
+            scrollableDiv.style.animationPlayState = 'paused';
+        });
+
+        scrollableDiv.addEventListener('mouseout', () => {
+            scrollableDiv.style.animationPlayState = 'running';
+        });
+    }
 });
+
