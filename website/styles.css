@@ -255,20 +255,40 @@ table.colorful-table tbody tr.yellow-row {
 
 
 
-/* extra added */
-.container{
+/* Main slider container */
+.slider {
+    width: 100%; /* Width of the visible area (3 images * 300px each) */
     height: 300px;
-    display: flex;
-    flex-direction: row;
-    background-color: DodgerBlue;
-    justify-content: center;
+    overflow: hidden; /* Hide overflow to ensure a clean slide effect */
+    position: relative;
+    background-color: rgba(0, 0, 64, 0.9); /* Optional background color for contrast */
+    text-align: center;
 }
 
-.container > div {
-    background-color: #f1f1f1;
-    width: 300px;
+/* The sliding track */
+.slide-track {
+    display: flex;
+    width: calc(300px * 6); /* Total width for 6 images (2 sets of 3 images) */
+    animation: scroll 10s linear infinite; /* Infinite scroll */
+    text-align: center;
+}
+
+/* Individual slide */
+.slide {
+    width: 300px; /* Set the width of each image */
+    height: 280px;
+    flex-shrink: 0; /* Prevent the images from shrinking */
     margin: 10px;
     text-align: center;
-    line-height: 75px;
-    font-size: 30px;
-  }
+}
+
+/* Keyframes for the scroll animation */
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-300px * 3)); /* Moves the width of 3 images to the left */
+    }
+}
+
