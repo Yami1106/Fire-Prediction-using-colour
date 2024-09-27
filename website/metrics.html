@@ -3,6 +3,7 @@
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
   <title>Metrics</title>
   <link rel="icon" type="image/x-icon" href="favicon1.ico">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
@@ -105,8 +106,7 @@
     <div class="loading-spinner" id="loading-humidity"><i class="fas fa-spinner fa-spin"></i></div>
   </p>
 
-  <button class="refresh-button" onclick="manualRefresh()">Refresh Now</button>
-  <div class="last-updated" id="last-updated">Last updated: --:--:--</div>
+  
 
 
   <script>
@@ -157,6 +157,9 @@
 
     // Initial load
     manualRefresh();
+
+
+    
     
   </script>
   </section>
