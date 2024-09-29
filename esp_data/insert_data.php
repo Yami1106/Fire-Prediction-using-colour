@@ -1,68 +1,49 @@
 <?php
-// // Connect to the database
-// $servername = "localhost";
-// $username = "root"; // Default WAMP username
-// $password = ""; // Default WAMP password
-// $dbname = "minor_project"; // Replace with your actual database name
+// Database connection parameters
+$hostname = "localhost";
+$username = "root";
+$password = "Ashish1106#";
+$database = "minor_project";
 
-// // Create connection
-// $conn = new mysqli($servername, $username, $password, $dbname);
+// Create a connection
+$conn = new mysqli($hostname, $username, $password, $database);
 
-// // Check connection
-// if ($conn->connect_error) {
-//     die("Connection failed: " . $conn->connect_error);
-// }
-
-// // Get data from the HTTP POST request
-// $temperature = $_POST['temperature'];
-// $humidity = $_POST['humidity'];
-// $mq2_value = $_POST['mq2_value'];
-// $fire_percent = $_POST['fire_percent'];
-// $no_fire_percent = $_POST['no_fire_percent'];
-
-// // Prepare and bind
-// $stmt = $conn->prepare("INSERT INTO sensor_data (temperature, humidity, mq2_value, fire_percent, no_fire_percent) VALUES (?, ?, ?, ?, ?)");
-// $stmt->bind_param("ddddd", $temperature, $humidity, $mq2_value, $fire_percent, $no_fire_percent);
-
-// // Execute the prepared statement
-// if ($stmt->execute()) {
-//     echo "New record created successfully";
-// } else {
-//     echo "Error: " . $stmt->error;
-// }
-
-// // Close connection
-// $stmt->close();
-// $conn->close();
-
-$hostname="localhost";
-$username="root";
-$password="";
-$database="minor_project";
-
-$conn=mysqli_connect($hostname,$username,$password,$database);
-
-if (!$conn){
-    die("Connection Failed:".mysqli_connect_error());
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
-echo "database connection is ok<br/>";
+echo "Database connection is OK<br/>";
 
-if (isset($_POST["temperature"]) && isset($_POST["humidity"]) && isset($_POST["mq2_value"]) && isset($_POST["fire_percent"]) && isset($_POST["no_fire_percent"])){
-    $t=$_POST["temperature"];
-    $h=$_POST["humidity"];
-    $m=$_POST["mq2_value"];
-    $f=$_POST["fire_percent"];
-    $nf=$_POST["no_fire_percent"];
+// Check if all POST data is set and valid
+if (isset($_POST["temperature"], $_POST["humidity"], $_POST["mq2_value"], $_POST["fire_percent"], $_POST["no_fire_percent"])) {
+    // Sanitize and assign POST data
+    $t = (float) $_POST["temperature"]; // Cast to float to ensure proper type
+    $h = (float) $_POST["humidity"];
+    $m = (float) $_POST["mq2_value"];
+    $f = (float) $_POST["fire_percent"];
+    $nf = (float) $_POST["no_fire_percent"];
+
+    // Prepare and bind the SQL statement to avoid SQL injection
+    $stmt = $conn->prepare("INSERT INTO sensor_data (temperature, humidity, mq2_value, fire_percent, no_fire_percent) VALUES (?, ?, ?, ?, ?)");
+    if ($stmt) {
+        $stmt->bind_param("ddddd", $t, $h, $m, $f, $nf);
+
+        // Execute the statement
+        if ($stmt->execute()) {
+            echo "New record created successfully";
+        } else {
+            echo "Error: " . $stmt->error;
+        }
+
+        // Close the statement
+        $stmt->close();
+    } else {
+        echo "Error preparing statement: " . $conn->error;
+    }
+} else {
+    echo "Required POST data missing.";
 }
 
-
-$sql="INSERT INTO sensor_data (temperature,humidity,mq2_value,fire_percent,no_fire_percent)  VALUES('".$t."','".$h."','".$m."','".$f."','".$nf."')";
-
-if (mysqli_query($conn,$sql)){
-    echo "new record created";
-} else{
-    echo "error".$sql."<hr>".mysqli_error($conn);
-}
-
-
+// Close the database connection
+$conn->close();
 ?>
