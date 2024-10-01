@@ -15,7 +15,8 @@ document.getElementById('home-link').addEventListener('click', function(e) {
         behavior: 'smooth' // Smooth scrolling effect
     });
 });
-    
+
+
     // Smooth scroll functionality with delay
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
