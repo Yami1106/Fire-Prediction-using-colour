@@ -22,6 +22,14 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
     });
+document.getElementById('home-link').addEventListener('click', function(e) {
+    e.preventDefault(); // Prevent default link behavior
+    window.scrollTo({
+        top: 0, // Scroll to the top of the page
+        behavior: 'smooth' // Smooth scrolling effect
+    });
+});
+
 
     // Parallax effect
     window.addEventListener('scroll', function () {
