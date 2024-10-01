@@ -8,7 +8,14 @@ document.addEventListener('DOMContentLoaded', function () {
         loop: true, // Optional: Loops the typing animation
         showCursor: false // Optional: Shows the blinking cursor
     });
-
+document.getElementById('home-link').addEventListener('click', function(e) {
+    e.preventDefault(); // Prevent default link behavior
+    window.scrollTo({
+        top: 0, // Scroll to the top of the page
+        behavior: 'smooth' // Smooth scrolling effect
+    });
+});
+    
     // Smooth scroll functionality with delay
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
