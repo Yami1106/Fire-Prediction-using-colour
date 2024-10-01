@@ -73,9 +73,9 @@ nav ul li a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 100px auto; /* Adjusted margin */
-    padding: 50px; /* Added padding */
-    max-width: 1200px; /* Set max-width to center the content */
+    margin: 100px auto; /
+    padding: 50px; 
+    max-width: 1200px; 
     text-align: center;
 }
 
@@ -87,6 +87,7 @@ nav ul li a:hover {
 .main-heading {
     font-size: 3rem; /* Increased font size */
     color: white;
+    padding-bottom: 20px;
     animation: boomIn 1s ease-out; /* Added boomIn animation */
 }
 
@@ -97,11 +98,12 @@ nav ul li a:hover {
 }
 
 .rightsection {
-    width: 45%; /* Adjusted width */
+    float: right;
+    /* width: 45%; 
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 20px;
+    margin-left: 20px; */
 }
 
 .rightsection img {
@@ -261,7 +263,7 @@ table.colorful-table tbody tr.yellow-row {
     height: 300px;
     overflow: hidden; /* Hide overflow to ensure a clean slide effect */
     position: relative;
-    background-color: rgba(0, 0, 64, 0.9); /* Optional background color for contrast */
+    background-color:linear-gradient(120deg, rgb(0, 0, 32), rgb(18, 18, 77));; /* Optional background color for contrast */
     text-align: center;
 }
 
