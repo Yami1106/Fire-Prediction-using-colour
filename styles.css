@@ -284,7 +284,8 @@ table.colorful-table tbody tr.yellow-row {
     flex-shrink: 0; /* Prevent the images from shrinking */
     margin: 10px;
     text-align: center;
-    background-color:rgba(239, 235, 235, 0.3);
+    background-color:rgb(151, 151, 177);
+    box-shadow: 15px 15px 25px rgb(83, 2, 205);
 }
 
 /* Keyframes for the scroll animation */
