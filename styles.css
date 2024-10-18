@@ -298,4 +298,12 @@ table.colorful-table tbody tr.yellow-row {
         transform: translateX(calc(-300px * 3)); /* Moves the width of 3 images to the left */
     }
 }
+.Description {
+    -webkit-text-stroke: 0.09375rem #0d1b1e;
+    -o-text-stroke: 0.09375rem #0d1b1e;
+    text-stroke: 0.09375rem #0d1b1e;
+    color: #f2cee6;
+    letter-spacing: 6px;
+    text-shadow: 5px 5px 0px rgb(83, 2, 205);
+  }
 
