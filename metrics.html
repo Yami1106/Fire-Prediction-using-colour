@@ -134,6 +134,7 @@
   <div class="risk-indicator">
     <div id="riskMarker" class="risk-marker"></div>
   </div>
+  <p id="riskLevel" style="font-size: 1.5rem; margin-top: 10px;">Risk Level: <span id="riskText">Normal</span></p>
 
   <!-- Project Info -->
   <div class="project-info">
@@ -179,9 +180,52 @@
     }
 
     function updateRiskIndicator(temperature, humidity) {
-      const risk = (temperature * 1.1 + (100 - humidity) * 0.9) / 2; // Simple risk calculation
+      // Define thresholds
+      const highTempThreshold = 35; // °C
+      const highHumidityThreshold = 70; // %
+      const lowHumidityThreshold = 30; // %
+
+      let risk = 0;
+      let riskText = "Normal";
+
+      // Calculate risk based on temperature and humidity
+      if (temperature > highTempThreshold) {
+        risk += 50;
+      }
+
+      if (humidity > highHumidityThreshold) {
+        risk += 25;
+      } else if (humidity < lowHumidityThreshold) {
+        risk += 50;
+      }
+
+      // Determine risk level
+      if (risk >= 75) {
+        riskText = "High";
+      } else if (risk >= 50) {
+        riskText = "Moderate";
+      } else if (risk >= 25) {
+        riskText = "Low";
+      }
+
+      // Update the risk marker position
       const marker = document.getElementById('riskMarker');
       marker.style.left = `${risk}%`;
+
+      // Update the risk text
+      document.getElementById('riskText').textContent = riskText;
+
+      // Change the color of the risk text based on the risk level
+      const riskTextElement = document.getElementById('riskText');
+      if (risk >= 75) {
+        riskTextElement.style.color = 'red';
+      } else if (risk >= 50) {
+        riskTextElement.style.color = 'orange';
+      } else if (risk >= 25) {
+        riskTextElement.style.color = 'yellow';
+      } else {
+        riskTextElement.style.color = 'green';
+      }
 
       document.getElementById('lastUpdate').textContent = 'Last updated: ' + new Date().toLocaleString();
     }
@@ -219,3 +263,4 @@
 </body>
 
 </html>
+
