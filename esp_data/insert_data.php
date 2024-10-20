@@ -15,6 +15,10 @@ if ($conn->connect_error) {
 echo "Database connection is OK<br/>";
 
 // Check if all POST data is set and valid
+
+echo "Raw POST data:<br/>";
+print_r($_POST); 
+
 if (isset($_POST["temperature"], $_POST["humidity"], $_POST["mq2_value"], $_POST["fire_percent"], $_POST["no_fire_percent"])) {
     // Sanitize and assign POST data
     $t = (float) $_POST["temperature"]; // Cast to float to ensure proper type

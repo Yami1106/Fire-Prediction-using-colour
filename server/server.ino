@@ -1,8 +1,10 @@
 #include <WiFi.h>
 #include <HTTPClient.h>
 
-String URL="http://192.168.33.172/esp_data/insert_data.php";
+// Server URL
+String URL = "http://192.168.33.172/esp_data/insert_data.php";
 
+// WiFi credentials
 const char* ssid = "S23";
 const char* password = "viropo2310";
 
@@ -26,27 +28,58 @@ void loop() {
     Serial.println(receivedData);  // Print the received data to Serial Monitor
 
     // Split the data received (which is comma-separated)
-    float temperature, humidity, mq2_value, fire_percent, no_fire_percent;
-    sscanf(receivedData.c_str(), "%f,%f,%f,%f,%f", &temperature, &humidity, &mq2_value, &fire_percent, &no_fire_percent);
-      String postData = "temperature=" + String(temperature) +"&humidity=" + String(humidity) +"&mq2_value=" + String(mq2_value) +"&fire_percent=" + String(fire_percent) +"&no_fire_percent=" + String(no_fire_percent);
+    float temperature = 0.0, humidity = 0.0, mq2_value = 0.0, fire_percent = 0.0, no_fire_percent = 0.0;
+    int parsedItems = sscanf(receivedData.c_str(), "%f,%f,%f,%f,%f", &temperature, &humidity, &mq2_value, &fire_percent, &no_fire_percent);
+
+    // Check if all values were successfully parsed
+    if (parsedItems == 5) {
+      Serial.println("Data parsed successfully:");
+      Serial.print("Temperature: "); Serial.println(temperature);
+      Serial.print("Humidity: "); Serial.println(humidity);
+      Serial.print("MQ2 Value: "); Serial.println(mq2_value);
+      Serial.print("Fire Percent: "); Serial.println(fire_percent);
+      Serial.print("No Fire Percent: "); Serial.println(no_fire_percent);
+
+      // Create the POST data string
+      String postData = "temperature=" + String(temperature) +
+                        "&humidity=" + String(humidity) +
+                        "&mq2_value=" + String(mq2_value) +
+                        "&fire_percent=" + String(fire_percent) +
+                        "&no_fire_percent=" + String(no_fire_percent);
+
+      // Initialize HTTPClient object
       HTTPClient http;
 
-    http.begin(URL);
+      // Start connection to server and set headers
+      http.begin(URL);
+      http.addHeader("Content-Type", "application/x-www-form-urlencoded");  // Set content type
+      http.setTimeout(5000);
+
       // Send HTTP POST request
-    int httpCode = http.POST(postData);
+      int httpCode = http.POST(postData);
 
-    String payload= http.getString();
+      // Check the response
+      if (httpCode > 0) {
+        // Success, print response payload
+        String payload = http.getString();
+        Serial.println("Server response:");
+        Serial.println(payload);
+      } else {
+        // If there was an error, print error code
+        Serial.print("Error on HTTP request, code: ");
+        Serial.println(httpCode);
+      }
 
-    http.addHeader("Content-type","application/x-www-form-urlencoded");
+      // Close the HTTP connection
+      http.end();
 
-    Serial.println("URL: ");
-    Serial.print(URL);
-    Serial.println("Data: ");
-    Serial.print(postData);
-    Serial.println("httpcode: ");
-    Serial.print(httpCode);
-    Serial.println("payload: ");
-    Serial.print(payload);
+      // Print the sent data for debugging
+      Serial.println("POST Data: " + postData);
+      Serial.println("HTTP Code: " + String(httpCode));
+    } else {
+      Serial.println("Failed to parse the data correctly.");
+    }
   }
-    delay(1000);  // Wait 1 second before checking for the next data
+
+  delay(1000);  // Wait 1 second before checking for the next data
 }
