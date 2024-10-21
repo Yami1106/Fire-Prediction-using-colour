@@ -2,7 +2,7 @@
 #include <HTTPClient.h>
 
 // Server URL
-String URL = "http://192.168.33.172/esp_data/insert_data.php";
+String URL = "http://192.168.33.172/esp_data/insert_data.php";  // Update with your actual server IP and path
 
 // WiFi credentials
 const char* ssid = "S23";

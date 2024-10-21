@@ -1,27 +1,27 @@
 <?php
 // Database connection parameters
-$hostname = "localhost";
-$username = "root";
-$password = "Ashish1106#";
-$database = "minor_project";
+$hostname = "localhost";  // Keep it as 'localhost' when using XAMPP
+$username = "root";  // Default MySQL user for XAMPP
+$password = "";  // Your MySQL password
+$database = "minor_project";  // Name of your database
 
-// Create a connection
+// Create a connection to the MySQL database
 $conn = new mysqli($hostname, $username, $password, $database);
 
-// Check connection
+// Check if the connection was successful
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 echo "Database connection is OK<br/>";
 
-// Check if all POST data is set and valid
-
+// Display the raw POST data for debugging
 echo "Raw POST data:<br/>";
-print_r($_POST); 
+print_r($_POST);
 
+// Check if all POST data is set and valid
 if (isset($_POST["temperature"], $_POST["humidity"], $_POST["mq2_value"], $_POST["fire_percent"], $_POST["no_fire_percent"])) {
     // Sanitize and assign POST data
-    $t = (float) $_POST["temperature"]; // Cast to float to ensure proper type
+    $t = (float) $_POST["temperature"];  // Cast to float to ensure proper type
     $h = (float) $_POST["humidity"];
     $m = (float) $_POST["mq2_value"];
     $f = (float) $_POST["fire_percent"];
