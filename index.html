@@ -16,14 +16,14 @@
 <body>
     <div id="navi-bar">
         <nav id="navbar">
-            <span class="nav-logo" style="font-size: 24px;">&#x1F525; Fire Alert</span>
+            <span class="nav-logo" style="font-size: 1.7rem;">&#x1F525; Fire Alert</span>
             <div class="right">
                 <ul>
-                <li><a href="#" id="home-link"> Home</a></li>
-                <li><a href="#description"> Description</a></li>
-                <li><a href="metrics.html" target="_blank"> Metrics</a></li>
-                <li><a href="#todo"> To Do</a></li>
-                <li><a href="#Emergency-Contact"> Emergency Contact</a></li>
+                    <li><a href="#" id="home-link"> Home</a></li>
+                    <li><a href="#description"> Description</a></li>
+                    <li><a href="metrics.html" target="_blank"> Metrics</a></li>
+                    <li><a href="#todo"> To Do</a></li>
+                    <li><a href="#Emergency-Contact"> Emergency Contact</a></li>
                 </ul>
             </div>
         </nav>
@@ -33,54 +33,45 @@
         <!-- First Section -->
         <section class="firstsection">
             <div class="leftsection">
-                <h1 class="main-heading">Hi, This is a website for fire detection</h1>
-                <span id="element"></span>
+                <div class="heading-container">
+                    <h1 class="main-heading">Hi, this is a website for fire detection</h1>
+                    <p class="sub-heading">Real-time monitoring for your safety</p>
+                </div>
             </div>
             <div class="rightsection">
-                <img src="images/final_architecture_diagram.png" alt="Fire Detection Image">
+                <h2>ESP32 DHT Server</h2>
+                <p>
+                    <i class="fas fa-thermometer-half" style="color:#059e8a;"></i>
+                    <span class="dht-labels">Temperature</span>
+                    <span id="temperature">36</span>
+                    <sup class="units">&deg;C</sup>
+                </p>
+                <p>
+                    <i class="fas fa-tint" style="color:#00add6;"></i>
+                    <span class="dht-labels">Humidity</span>
+                    <span id="humidity">61</span>
+                    <sup class="units">%</sup>
+                </p>
+
+                <!-- Fire Risk Visualization -->
+                <h3>Fire Risk Visualization</h3>
+                <div class="risk-indicator">
+                    <div id="riskMarker" class="risk-marker"></div>
+                </div>
+                <p id="riskLevel">Risk Level: <span id="riskText">Normal</span></p>
+
+                <button onclick="manualRefresh()" class="refresh-button">Refresh Data</button>
+                <p id="update-indicator" style="display: none;">Updating...</p>
+                <p id="lastUpdate"></p>
             </div>
         </section>
 
-
         <div class="slider">
             <div class="slide-track">
-                <!-- First set of images -->
-                <div class="slide">
-                    <img src="images/final_architecture_diagram.png" width="250px" height="250px" style="padding-top: 30px;">
-                </div>
-                <div class="slide">
-                    <img src="images/main.png" width="250px" height="250px" style="padding-top: 30px;">
-                </div>
-                <div class="slide">
-                    <img src="images/final_architecture_diagram.png" width="250px" height="250px" style="padding-top: 30px;">
-                </div>
-                
-                <!-- Duplicate set of images to create the seamless loop -->
-                <div class="slide">
-                    <img src="images/final_architecture_diagram.png" width="250px" height="250px" style="padding-top: 30px;">
-                </div>
-                <div class="slide">
-                    <img src="images/main.png" width="250px" height="250px" style="padding-top: 30px;">
-                </div>
-                <div class="slide">
-                    <img src="images/final_architecture_diagram.png" width="250px" height="250px" style="padding-top: 30px;">
-                </div>
-                <div class="slide">
-                    <img src="images/final_architecture_diagram.png" width="250px" height="250px" style="padding-top: 30px;">
-                </div>
-                <div class="slide">
-                    <img src="images/final_architecture_diagram.png" width="250px" height="250px" style="padding-top: 30px;">
-                </div>
-                <div class="slide">
-                    <img src="images/final_architecture_diagram.png" width="250px" height="250px" style="padding-top: 30px;">
-                </div>
-                <div class="slide">
-                    <img src="images/final_architecture_diagram.png" width="250px" height="250px" style="padding-top: 30px;">
-                </div>
+                <!-- Slider content -->
             </div>
         </div>
-        
-        
+        <hr>
         <!-- Description Section -->
         <section id="description" class="tile-section">
             <div class="tile">
@@ -91,7 +82,6 @@
                         advanced technologies such as thermal imaging, smoke detection, and sensor networks, this system aims
                         to provide early warnings before fires spread. Additionally, this platform includes automated emergency
                         services contact information to help streamline responses and save lives during critical situations.
-                        <br><br>
                         With constant monitoring and live alerts, users can take proactive measures to secure their premises.
                         The system is highly adaptable, working in both residential and industrial settings, ensuring maximum
                         safety.
@@ -108,11 +98,12 @@
                 <div class="tile-content">
                     <h1 class="gradient-heading" data-text="To Do">To Do</h1>
                     <ul class="section-text">
-                        <li>Develop and optimize the fire detection algorithm for different environments.</li>
-                        <li>Integrate live alerts using SMS, emails, and push notifications for faster communication.</li>
-                        <li>Test and monitor the system in various conditions to ensure accuracy and reliability.</li>
-                        <li>Create user-friendly documentation and tutorials to help users effectively utilize the system.</li>
-                        <li>Introduce multilingual support to cater to a global audience.</li>
+                        <li>Stay Calm and Act Quickly: Keep calm and act decisively to avoid delays.</li>
+                        <li>Sound the Alarm: Alert others and call emergency services as soon as possible.</li>
+                        <li>Evacuate Immediately: Use the nearest safe exit and avoid elevators.</li>
+                        <li>Stay Low: If there's smoke, crawl on the ground to avoid inhaling toxic fumes.</li>
+                        <li>Don't Re-enter the Building: Once out, stay out and wait for emergency personnel to handle the
+                            situation.</li>
                     </ul>
                 </div>
             </div>
@@ -121,7 +112,7 @@
         <hr>
 
         <!-- Emergency Numbers Section -->
-        <section id="Emergency-Contact"class="tile-section">
+        <section id="Emergency-Contact" class="tile-section">
             <div class="tile">
                 <div class="tile-content">
                     <h1 class="gradient-heading" data-text="Emergency Contact">Emergency Contact</h1>
@@ -154,5 +145,99 @@
         </section>
     </main>
 
+    <script>
+        function updateTemperature() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("temperature").innerHTML = this.responseText;
+                    updateRiskIndicator();
+                }
+            };
+            xhttp.open("GET", "temperature", true);
+            xhttp.send();
+        }
+
+        function updateHumidity() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("humidity").innerHTML = this.responseText;
+                    updateRiskIndicator();
+                }
+            };
+            xhttp.open("GET", "humidity", true);
+            xhttp.send();
+        }
+
+        function updateRiskIndicator() {
+            const temperature = parseFloat(document.getElementById("temperature").innerHTML);
+            const humidity = parseFloat(document.getElementById("humidity").innerHTML);
+
+            // Define thresholds
+            const highTempThreshold = 35; // °C
+            const highHumidityThreshold = 70; // %
+            const lowHumidityThreshold = 30; // %
+
+            let risk = 0;
+            let riskText = "Normal";
+
+            // Calculate risk based on temperature and humidity
+            if (temperature > highTempThreshold) {
+                risk += 50;
+            }
+
+            if (humidity > highHumidityThreshold) {
+                risk += 25;
+            } else if (humidity < lowHumidityThreshold) {
+                risk += 50;
+            }
+
+            // Determine risk level
+            if (risk >= 75) {
+                riskText = "High";
+            } else if (risk >= 50) {
+                riskText = "Moderate";
+            } else if (risk >= 25) {
+                riskText = "Low";
+            }
+
+            // Update the risk marker position
+            const marker = document.getElementById('riskMarker');
+            marker.style.left = `${risk}%`;
+
+            // Update the risk text
+            const riskTextElement = document.getElementById('riskText');
+            riskTextElement.textContent = riskText;
+
+            // Change the color of the risk text based on the risk level
+            if (risk >= 75) {
+                riskTextElement.style.color = 'red';
+            } else if (risk >= 50) {
+                riskTextElement.style.color = 'orange';
+            } else if (risk >= 25) {
+                riskTextElement.style.color = 'yellow';
+            } else {
+                riskTextElement.style.color = 'green';
+            }
+        }
+
+        function manualRefresh() {
+            document.getElementById("update-indicator").style.display = "block";
+            updateTemperature();
+            updateHumidity();
+            setTimeout(function () {
+                document.getElementById("update-indicator").style.display = "none";
+            }, 1000);
+            document.getElementById("lastUpdate").textContent = "Last updated: " + new Date().toLocaleString();
+        }
+
+        // Initial load
+        manualRefresh();
+
+        // Automatic refresh every 10 seconds
+        setInterval(manualRefresh, 10000);
+    </script>
 </body>
+
 </html>

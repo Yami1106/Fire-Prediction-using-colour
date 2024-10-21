@@ -74,6 +74,111 @@ document.getElementById('home-link').addEventListener('click', function(e) {
     }
 });
 
+function updateTemperature() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("temperature").innerHTML = this.responseText;
+            updateRiskIndicator(); // Call here
+        }
+    };
+    xhttp.open("GET", "temperature", true);
+    xhttp.send();
+}
+
+function updateHumidity() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("humidity").innerHTML = this.responseText;
+            updateRiskIndicator(); // Call here
+        }
+    };
+    xhttp.open("GET", "humidity", true);
+    xhttp.send();
+}
+
+function updateTime() {
+    document.getElementById("lastUpdate").textContent = "Last updated: " + new Date().toLocaleString();
+}
+
+function manualRefresh() {
+    document.getElementById("update-indicator").style.display = "block";
+    
+    // Simulate updating temperature and humidity with random values
+    document.getElementById("temperature").innerHTML = (Math.random() * (40 - 20) + 20).toFixed(1);
+    document.getElementById("humidity").innerHTML = (Math.random() * (100 - 0) + 0).toFixed(1);
+    
+    updateRiskIndicator();
+    
+    setTimeout(function () {
+        document.getElementById("update-indicator").style.display = "none";
+    }, 1000);
+    document.getElementById("lastUpdate").textContent = "Last updated: " + new Date().toLocaleString();
+}
+
+function updateRiskIndicator() {
+    const temperature = parseFloat(document.getElementById("temperature").innerHTML);
+    const humidity = parseFloat(document.getElementById("humidity").innerHTML);
+
+    // Define thresholds
+    const highTempThreshold = 35; // °C
+    const highHumidityThreshold = 70; // %
+    const lowHumidityThreshold = 30; // %
+
+    let risk = 0;
+    let riskText = "Normal";
+
+    // Calculate risk based on temperature and humidity
+    if (temperature > highTempThreshold) {
+        risk += 50;
+    }
+
+    if (humidity > highHumidityThreshold) {
+        risk += 25;
+    } else if (humidity < lowHumidityThreshold) {
+        risk += 50;
+    }
+
+    // Determine risk level
+    if (risk >= 75) {
+        riskText = "High";
+    } else if (risk >= 50) {
+        riskText = "Moderate";
+    } else if (risk >= 25) {
+        riskText = "Low";
+    }
+
+    // Update the risk marker position
+    const marker = document.getElementById('riskMarker');
+    marker.style.left = `${risk}%`;
+
+    // Update the risk text
+    const riskTextElement = document.getElementById('riskText');
+    riskTextElement.textContent = riskText;
+
+    // Change the color of the risk text based on the risk level
+    if (risk >= 75) {
+        riskTextElement.style.color = 'red';
+    } else if (risk >= 50) {
+        riskTextElement.style.color = 'orange';
+    } else if (risk >= 25) {
+        riskTextElement.style.color = 'yellow';
+    } else {
+        riskTextElement.style.color = 'green';
+    }
+
+    console.log(`Temperature: ${temperature}°C, Humidity: ${humidity}%, Risk: ${risk}%, Level: ${riskText}`);
+}
+
+// Initial load
+document.addEventListener('DOMContentLoaded', function() {
+    updateRiskIndicator();
+});
+
+// Automatic refresh every 10 seconds
+setInterval(manualRefresh, 10000);
+
 
 
 
