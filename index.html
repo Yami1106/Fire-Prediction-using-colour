@@ -11,6 +11,53 @@
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js"></script>
     <script src="script.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .slider {
+            width: 100%;
+            height: 310px; /* Adjust based on your image height + padding */
+            position: relative;
+            overflow: hidden;
+            background: rgb(0, 0, 32); /* Matching your website's background color */
+        }
+
+        .slide-track {
+            display: flex;
+            width: calc(250px * 20); /* 250px per slide * 20 slides */
+            animation: scroll 40s linear infinite;
+        }
+
+        .slide {
+            width: 250px;
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 30px;
+        }
+
+        .slide img {
+            width: 250px;
+            height: 250px;
+            object-fit: contain;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            border-radius: 10px; /* Rounded corners for the glow effect */
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5); /* Cyan glow */
+        }
+
+        .slide:hover img {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.8); /* Enhanced glow on hover */
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(-250px * 10)); /* Half of the total width */
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -66,11 +113,75 @@
             </div>
         </section>
 
+        <!-- Image Slider -->
         <div class="slider">
             <div class="slide-track">
-                <!-- Slider content -->
+                <!-- First set of images -->
+                <div class="slide">
+                    <img src="images/final_architecture_diagram.png" alt="Architecture Diagram">
+                </div>
+                <div class="slide">
+                    <img src="images/main.png" alt="Main Image">
+                </div>
+                <div class="slide">
+                    <img src="images/final_architecture_diagram.png" alt="Architecture Diagram">
+                </div>
+                <div class="slide">
+                    <img src="images/final_architecture_diagram.png" alt="Architecture Diagram">
+                </div>
+                <div class="slide">
+                    <img src="images/final_architecture_diagram.png" alt="Architecture Diagram">
+                </div>
+                <div class="slide">
+                    <img src="images/final_architecture_diagram.png" alt="Architecture Diagram">
+                </div>
+                <div class="slide">
+                    <img src="images/final_architecture_diagram.png" alt="Architecture Diagram">
+                </div>
+                <div class="slide">
+                    <img src="images/final_architecture_diagram.png" alt="Architecture Diagram">
+                </div>
+                <div class="slide">
+                    <img src="images/final_architecture_diagram.png" alt="Architecture Diagram">
+                </div>
+                <div class="slide">
+                    <img src="images/final_architecture_diagram.png" alt="Architecture Diagram">
+                </div>
+                
+                <!-- Duplicate set of images to create the seamless loop -->
+                <div class="slide">
+                    <img src="images/final_architecture_diagram.png" alt="Architecture Diagram">
+                </div>
+                <div class="slide">
+                    <img src="images/main.png" alt="Main Image">
+                </div>
+                <div class="slide">
+                    <img src="images/final_architecture_diagram.png" alt="Architecture Diagram">
+                </div>
+                <div class="slide">
+                    <img src="images/final_architecture_diagram.png" alt="Architecture Diagram">
+                </div>
+                <div class="slide">
+                    <img src="images/final_architecture_diagram.png" alt="Architecture Diagram">
+                </div>
+                <div class="slide">
+                    <img src="images/final_architecture_diagram.png" alt="Architecture Diagram">
+                </div>
+                <div class="slide">
+                    <img src="images/final_architecture_diagram.png" alt="Architecture Diagram">
+                </div>
+                <div class="slide">
+                    <img src="images/final_architecture_diagram.png" alt="Architecture Diagram">
+                </div>
+                <div class="slide">
+                    <img src="images/final_architecture_diagram.png" alt="Architecture Diagram">
+                </div>
+                <div class="slide">
+                    <img src="images/final_architecture_diagram.png" alt="Architecture Diagram">
+                </div>
             </div>
         </div>
+
         <hr>
         <!-- Description Section -->
         <section id="description" class="tile-section">
@@ -78,12 +189,18 @@
                 <div class="tile-content">
                     <h1 class="gradient-heading" data-text="Description">Description</h1>
                     <p class="section-text">
-                        The Fire Detection system is designed to monitor and detect fire hazards in real-time. By leveraging
-                        advanced technologies such as thermal imaging, smoke detection, and sensor networks, this system aims
-                        to provide early warnings before fires spread. Additionally, this platform includes automated emergency
-                        services contact information to help streamline responses and save lives during critical situations.
-                        With constant monitoring and live alerts, users can take proactive measures to secure their premises.
-                        The system is highly adaptable, working in both residential and industrial settings, ensuring maximum
+                        The Fire Detection system is designed to monitor and detect fire hazards in real-time. By
+                        leveraging
+                        advanced technologies such as thermal imaging, smoke detection, and sensor networks, this system
+                        aims
+                        to provide early warnings before fires spread. Additionally, this platform includes automated
+                        emergency
+                        services contact information to help streamline responses and save lives during critical
+                        situations.
+                        With constant monitoring and live alerts, users can take proactive measures to secure their
+                        premises.
+                        The system is highly adaptable, working in both residential and industrial settings, ensuring
+                        maximum
                         safety.
                     </p>
                 </div>
@@ -102,7 +219,8 @@
                         <li>Sound the Alarm: Alert others and call emergency services as soon as possible.</li>
                         <li>Evacuate Immediately: Use the nearest safe exit and avoid elevators.</li>
                         <li>Stay Low: If there's smoke, crawl on the ground to avoid inhaling toxic fumes.</li>
-                        <li>Don't Re-enter the Building: Once out, stay out and wait for emergency personnel to handle the
+                        <li>Don't Re-enter the Building: Once out, stay out and wait for emergency personnel to handle
+                            the
                             situation.</li>
                     </ul>
                 </div>
@@ -237,6 +355,23 @@
 
         // Automatic refresh every 10 seconds
         setInterval(manualRefresh, 10000);
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const slider = document.querySelector('.slider');
+            const slides = document.querySelectorAll('.slide');
+            
+            // Function to reset the animation
+            function resetAnimation() {
+                slider.style.animation = 'none';
+                slider.offsetHeight; // Trigger reflow
+                slider.style.animation = null;
+            }
+
+            // Reset animation when it completes
+            slider.addEventListener('animationiteration', resetAnimation);
+        });
     </script>
 </body>
 

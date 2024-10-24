@@ -32,14 +32,13 @@ body {
 .right ul {
     list-style-type: none;
     display: flex;
-    gap: 3.5vh;
+    gap: 20px;
 }
 
 .right ul li a {
     color: #ffffff;
     text-decoration: none;
     transition: color 0.3s ease;
-    font-size: 1.7rem;
 }
 
 .right ul li a:hover {
@@ -172,7 +171,7 @@ body {
 
 .gradient-heading {
     font-size: 2.5rem;
-    color: lightseagreen;
+    color: #ffffff;
     margin-bottom: 20px;
     position: relative;
 }
@@ -190,9 +189,8 @@ body {
 }
 
 .section-text {
-    font-size: 1.8rem;
+    font-size: 1.1rem;
     line-height: 1.6;
-    text-align: justify;
 }
 
 /* Table Styles */
@@ -204,13 +202,13 @@ body {
     width: 100%;
     border-collapse: collapse;
     margin: 25px 0;
-    font-size: 1.8rem;
+    font-size: 0.9em;
     min-width: 400px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
 .styled-table thead tr {
-    background-image: linear-gradient(90deg, lightseagreen 60%, seagreen 70%);
+    background-color: #009879;
     color: #ffffff;
     text-align: left;
 }
