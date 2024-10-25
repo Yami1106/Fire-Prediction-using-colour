@@ -82,6 +82,7 @@ function fetchDataFromSheet(){
         document.getElementById("temperature").textContent = temperature;
         document.getElementById("humidity").textContent = humidity;
         updateRiskIndicator(temperature, humidity);
+        updateTime();
 
         } else {
         console.log("No data available in CSV.");
