@@ -135,8 +135,23 @@ function updateRiskIndicator() {
     console.log(`Temperature: ${temperature}°C, Humidity: ${humidity}%, Risk: ${risk}%, Level: ${riskText}`);
 }
 
+function manualRefresh() {
+    document.getElementById("update-indicator").style.display = "block";
+    fetchDataFromSheet();
+    setTimeout(() => {
+        document.getElementById("update-indicator").style.display = "none";
+    }, 1000);
+    document.getElementById("lastUpdate").textContent = "Last updated: " + new Date().toLocaleString();
+}
+
 // Initial load
 fetchDataFromSheet();
 
-// Refresh data every 10 seconds
-setInterval(fetchDataFromSheet, 2000);
+// Initial load
+manualRefresh();
+
+// Automatic refresh every 10 seconds
+setInterval(manualRefresh, 2000);
+
+// // Refresh data every 10 seconds
+// setInterval(fetchDataFromSheet, 2000);
