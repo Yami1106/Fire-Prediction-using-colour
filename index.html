@@ -262,7 +262,74 @@
             </div>
         </section>
     </main>
-
+    <script>
+        const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbz4D75EucRyuzg9QKhXnv_2lYtp7PPqqeDaM_8zR2MCTGrLdS5Rep_vlqvZdW2VjX-a/exec';
+    
+        function fetchDataFromGoogleSheets() {
+            fetch(GOOGLE_SHEETS_URL)
+                .then(response => response.json())
+                .then(data => {
+                    const temperature = data.temperature;  // Adjust key based on actual response structure
+                    const humidity = data.humidity;        // Adjust key based on actual response structure
+                    
+                    document.getElementById("temperature").textContent = temperature;
+                    document.getElementById("humidity").textContent = humidity;
+                    updateRiskIndicator(temperature, humidity);
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        }
+    
+        function updateRiskIndicator(temperature, humidity) {
+            const tempValue = parseFloat(temperature);
+            const humidityValue = parseFloat(humidity);
+    
+            // Define thresholds
+            const highTempThreshold = 35;  // °C
+            const highHumidityThreshold = 70; // %
+            const lowHumidityThreshold = 30; // %
+    
+            let risk = 0;
+            let riskText = "Normal";
+    
+            // Calculate risk based on thresholds
+            if (tempValue > highTempThreshold) risk += 50;
+            if (humidityValue > highHumidityThreshold) risk += 25;
+            if (humidityValue < lowHumidityThreshold) risk += 50;
+    
+            // Determine risk level
+            if (risk >= 75) {
+                riskText = "High";
+                document.getElementById("riskText").style.color = 'red';
+            } else if (risk >= 50) {
+                riskText = "Moderate";
+                document.getElementById("riskText").style.color = 'orange';
+            } else if (risk >= 25) {
+                riskText = "Low";
+                document.getElementById("riskText").style.color = 'yellow';
+            } else {
+                document.getElementById("riskText").style.color = 'green';
+            }
+    
+            document.getElementById("riskText").textContent = riskText;
+            document.getElementById("riskMarker").style.left = `${risk}%`;
+        }
+    
+        function manualRefresh() {
+            document.getElementById("update-indicator").style.display = "block";
+            fetchDataFromGoogleSheets();
+            setTimeout(() => {
+                document.getElementById("update-indicator").style.display = "none";
+            }, 1000);
+            document.getElementById("lastUpdate").textContent = "Last updated: " + new Date().toLocaleString();
+        }
+    
+        // Initial load
+        manualRefresh();
+    
+        // Automatic refresh every 10 seconds
+        setInterval(manualRefresh, 2000);
+    </script>
+    
 </body>
 
 </html>
