@@ -8,8 +8,13 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+    integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.21/jquery.csv.min.js"
+    integrity="sha512-Y8iWYJDo6HiTo5xtml1g4QqHtl/PO1w+dmUpQfQSOTqKNsMhExfyPN2ncNAe9JuJUSKzwK/b6oaNPop4MXzkwg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="script.js" type="text/javascript" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js"></script>
-    <script src="script.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         .slider {
@@ -260,75 +265,6 @@
                 </div>
             </div>
         </section>
-    </main>
-    <script>
-        const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbz4D75EucRyuzg9QKhXnv_2lYtp7PPqqeDaM_8zR2MCTGrLdS5Rep_vlqvZdW2VjX-a/exec';
-    
-        function fetchDataFromGoogleSheets() {
-            fetch(GOOGLE_SHEETS_URL)
-                .then(response => response.json())
-                .then(data => {
-                    const temperature = data.temperature;  // Adjust key based on actual response structure
-                    const humidity = data.humidity;        // Adjust key based on actual response structure
-                    
-                    document.getElementById("temperature").textContent = temperature;
-                    document.getElementById("humidity").textContent = humidity;
-                    updateRiskIndicator(temperature, humidity);
-                })
-                .catch(error => console.error('Error fetching data:', error));
-        }
-    
-        function updateRiskIndicator(temperature, humidity) {
-            const tempValue = parseFloat(temperature);
-            const humidityValue = parseFloat(humidity);
-    
-            // Define thresholds
-            const highTempThreshold = 35;  // °C
-            const highHumidityThreshold = 70; // %
-            const lowHumidityThreshold = 30; // %
-    
-            let risk = 0;
-            let riskText = "Normal";
-    
-            // Calculate risk based on thresholds
-            if (tempValue > highTempThreshold) risk += 50;
-            if (humidityValue > highHumidityThreshold) risk += 25;
-            if (humidityValue < lowHumidityThreshold) risk += 50;
-    
-            // Determine risk level
-            if (risk >= 75) {
-                riskText = "High";
-                document.getElementById("riskText").style.color = 'red';
-            } else if (risk >= 50) {
-                riskText = "Moderate";
-                document.getElementById("riskText").style.color = 'orange';
-            } else if (risk >= 25) {
-                riskText = "Low";
-                document.getElementById("riskText").style.color = 'yellow';
-            } else {
-                document.getElementById("riskText").style.color = 'green';
-            }
-    
-            document.getElementById("riskText").textContent = riskText;
-            document.getElementById("riskMarker").style.left = `${risk}%`;
-        }
-    
-        function manualRefresh() {
-            document.getElementById("update-indicator").style.display = "block";
-            fetchDataFromGoogleSheets();
-            setTimeout(() => {
-                document.getElementById("update-indicator").style.display = "none";
-            }, 1000);
-            document.getElementById("lastUpdate").textContent = "Last updated: " + new Date().toLocaleString();
-        }
-    
-        // Initial load
-        manualRefresh();
-    
-        // Automatic refresh every 10 seconds
-        setInterval(manualRefresh, 2000);
-    </script>
-    
+    </main>    
 </body>
-
 </html>
