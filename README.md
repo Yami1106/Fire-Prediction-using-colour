@@ -23,3 +23,6 @@ This project presents a comprehensive fire Prediction system leveraging the Inte
 4. If the fire Prediction probability exceeds 90% or the gas concentration exceeds 400 ppm, the system triggers immediate alerts.
 5. An audible buzzer sounds, and a clear message indicating the threat is displayed on the LCD screen.
   
+## Website
+
+[Fire Prediction using Colour](https://yami1106.github.io/Fire-Prediction-using-colour/)
