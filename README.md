@@ -1,14 +1,14 @@
 
-# Fire Detection System using IoT Framework
+# Fire Prediction System using IoT Framework
 
 ## Overview
 
-This project presents a comprehensive fire Detection system leveraging the Internet of Things (IoT) framework. The core functionality lies in a custom-designed neural network model, trained on user-collected fire and non-fire data, analyzing color sensor readings. This analysis enables the system to predict potential fire hazards. The system incorporates an MQ-2 gas sensor for enhanced detection of flammable gases or smoke, strengthening overall fire risk assessment.
+This project presents a comprehensive fire Prediction system leveraging the Internet of Things (IoT) framework. The core functionality lies in a custom-designed neural network model, trained on user-collected fire and non-fire data, analyzing color sensor readings. This analysis enables the system to predict potential fire hazards. The system incorporates an MQ-2 gas sensor for enhanced Prediction of flammable gases or smoke, strengthening overall fire risk assessment.
 
 ## Key Features
 
-- Custom-designed neural network model for fire Detection based on color sensor readings.
-- Integration of MQ-2 gas sensor for enhanced detection of flammable gases or smoke.
+- Custom-designed neural network model for fire Prediction based on color sensor readings.
+- Integration of MQ-2 gas sensor for enhanced Prediction of flammable gases or smoke.
 - LCD screen displays temperature and humidity under normal circumstances.
 - Immediate alerts triggered upon exceeding predefined thresholds:
   - High fire prediction probability (above 90%).
@@ -20,6 +20,6 @@ This project presents a comprehensive fire Detection system leveraging the Inter
 1. The system continuously monitors color sensor readings and analyzes them using a custom neural network model.
 2. Simultaneously, the MQ-2 gas sensor detects flammable gases/smoke.
 3. Under normal circumstances, the LCD screen displays temperature and humidity.
-4. If the fire detection probability exceeds 90% or the gas concentration exceeds 400 ppm, the system triggers immediate alerts.
+4. If the fire Prediction probability exceeds 90% or the gas concentration exceeds 400 ppm, the system triggers immediate alerts.
 5. An audible buzzer sounds, and a clear message indicating the threat is displayed on the LCD screen.
   
