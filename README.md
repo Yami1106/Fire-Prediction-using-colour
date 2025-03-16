@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # **🔥 Fire Prediction System using IoT Framework**
 ![Fire Prediction Banner](./images/final_architecture_diagram.png)
 
@@ -45,3 +46,6 @@ This project presents a **comprehensive fire prediction system** leveraging the 
    ```bash
    git clone https://github.com/yourusername/fire-prediction-system.git
 
+=======
+"# project-website" 
+>>>>>>> website

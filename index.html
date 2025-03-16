@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fire Detection</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+    integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.21/jquery.csv.min.js"
+    integrity="sha512-Y8iWYJDo6HiTo5xtml1g4QqHtl/PO1w+dmUpQfQSOTqKNsMhExfyPN2ncNAe9JuJUSKzwK/b6oaNPop4MXzkwg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="script.js" type="text/javascript" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .slider {
+            width: 100%;
+            height: 310px; /* Adjust based on your image height + padding */
+            position: relative;
+            overflow: hidden;
+            background: rgb(0, 0, 32); /* Matching your website's background color */
+        }
+
+        .slide-track {
+            display: flex;
+            width: calc(250px * 20); /* 250px per slide * 20 slides */
+            animation: scroll 40s linear infinite;
+        }
+
+        .slide {
+            width: 250px;
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 30px;
+        }
+
+        .slide img {
+            width: 250px;
+            height: 250px;
+            object-fit: contain;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            border-radius: 10px; /* Rounded corners for the glow effect */
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5); /* Cyan glow */
+        }
+
+        .slide:hover img {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.8); /* Enhanced glow on hover */
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(-250px * 10)); /* Half of the total width */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="navi-bar">
+        <nav id="navbar">
+            <span class="nav-logo" style="font-size: 1.7rem;">&#x1F525; Fire Alert</span>
+            <div class="right">
+                <ul>
+                    <li><a href="#" id="home-link"> Home</a></li>
+                    <li><a href="#description"> Description</a></li>
+                    <li><a href="#todo"> To Do</a></li>
+                    <li><a href="#Emergency-Contact"> Emergency Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <main>
+        <!-- First Section -->
+        <section class="firstsection">
+            <div class="leftsection">
+                <div class="heading-container">
+                    <h1 class="main-heading">Hi, this is a website for fire detection</h1>
+                    <p class="sub-heading">Real-time monitoring for your safety</p>
+                </div>
+            </div>
+            <div class="rightsection">
+                <h2>ESP32 DHT Server</h2>
+                <p>
+                    <i class="fas fa-thermometer-half" style="color:#059e8a;"></i>
+                    <span class="dht-labels">Temperature</span>
+                    <span id="temperature">36</span>
+                    <sup class="units">&deg;C</sup>
+                </p>
+                <p>
+                    <i class="fas fa-tint" style="color:#00add6;"></i>
+                    <span class="dht-labels">Humidity</span>
+                    <span id="humidity">61</span>
+                    <sup class="units">%</sup>
+                </p>
+
+                <!-- Fire Risk Visualization -->
+                <h3>Fire Risk Visualization</h3>
+                <div class="risk-indicator">
+                    <div id="riskMarker" class="risk-marker"></div>
+                </div>
+                <p id="riskLevel">Risk Level: <span id="riskText">Normal</span></p>
+
+                <button onclick="manualRefresh()" class="refresh-button">Refresh Data</button>
+                <p id="update-indicator" style="display: none;">Updating...</p>
+                <p id="lastUpdate"></p>
+            </div>
+        </section>
+
+        <!-- Image Slider -->
+        <div class="slider">
+            <div class="slide-track">
+                <!-- First set of images -->
+                <div class="slide">
+                    <img src="images/final_architecture_diagram.png" alt="Architecture Diagram">
+                </div>
+                <div class="slide">
+                    <img src="images/main.png" alt="Main Image">
+                </div>
+                <div class="slide">
+                    <img src="images/final_architecture_diagram.png" alt="Architecture Diagram">
+                </div>
+                <div class="slide">
+                    <img src="images/main.png" alt="Architecture Diagram">
+                </div>
+                <div class="slide">
+                    <img src="images/final_architecture_diagram.png" alt="Architecture Diagram">
+                </div>
+                <div class="slide">
+                    <img src="images/main.png" alt="Architecture Diagram">
+                </div>
+                <div class="slide">
+                    <img src="images/final_architecture_diagram.png" alt="Architecture Diagram">
+                </div>
+                <div class="slide">
+                    <img src="images/main.png" alt="Architecture Diagram">
+                </div>
+                <div class="slide">
+                    <img src="images/final_architecture_diagram.png" alt="Architecture Diagram">
+                </div>
+                <div class="slide">
+                    <img src="images/main.png" alt="Architecture Diagram">
+                </div>
+                
+                <!-- Duplicate set of images to create the seamless loop -->
+                <div class="slide">
+                    <img src="images/final_architecture_diagram.png" alt="Architecture Diagram">
+                </div>
+                <div class="slide">
+                    <img src="images/main.png" alt="Main Image">
+                </div>
+                <div class="slide">
+                    <img src="images/final_architecture_diagram.png" alt="Architecture Diagram">
+                </div>
+                <div class="slide">
+                    <img src="images/main.png" alt="Architecture Diagram">
+                </div>
+                <div class="slide">
+                    <img src="images/final_architecture_diagram.png" alt="Architecture Diagram">
+                </div>
+                <div class="slide">
+                    <img src="images/main.png" alt="Architecture Diagram">
+                </div>
+                <div class="slide">
+                    <img src="images/final_architecture_diagram.png" alt="Architecture Diagram">
+                </div>
+                <div class="slide">
+                    <img src="images/main.png" alt="Architecture Diagram">
+                </div>
+                <div class="slide">
+                    <img src="images/final_architecture_diagram.png" alt="Architecture Diagram">
+                </div>
+                <div class="slide">
+                    <img src="images/main.png" alt="Architecture Diagram">
+                </div>
+            </div>
+        </div>
+
+        <hr>
+        <!-- Description Section -->
+        <section id="description" class="tile-section">
+            <div class="tile">
+                <div class="tile-content">
+                    <h1 class="gradient-heading" data-text="Description">Description</h1>
+                    <p class="section-text">
+                        The Fire Detection system is designed to monitor and detect fire hazards in real-time. By
+                        leveraging
+                        advanced technologies such as thermal imaging, smoke detection, and sensor networks, this system
+                        aims
+                        to provide early warnings before fires spread. Additionally, this platform includes automated
+                        emergency
+                        services contact information to help streamline responses and save lives during critical
+                        situations.
+                        With constant monitoring and live alerts, users can take proactive measures to secure their
+                        premises.
+                        The system is highly adaptable, working in both residential and industrial settings, ensuring
+                        maximum
+                        safety.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
+        <!-- To Do Section -->
+        <section id="todo" class="tile-section">
+            <div class="tile">
+                <div class="tile-content">
+                    <h1 class="gradient-heading" data-text="To Do">To Do</h1>
+                    <ul class="section-text">
+                        <li>Stay Calm and Act Quickly: Keep calm and act decisively to avoid delays.</li>
+                        <li>Sound the Alarm: Alert others and call emergency services as soon as possible.</li>
+                        <li>Evacuate Immediately: Use the nearest safe exit and avoid elevators.</li>
+                        <li>Stay Low: If there's smoke, crawl on the ground to avoid inhaling toxic fumes.</li>
+                        <li>Don't Re-enter the Building: Once out, stay out and wait for emergency personnel to handle
+                            the
+                            situation.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
+        <!-- Emergency Numbers Section -->
+        <section id="Emergency-Contact" class="tile-section">
+            <div class="tile">
+                <div class="tile-content">
+                    <h1 class="gradient-heading" data-text="Emergency Contact">Emergency Contact</h1>
+                    <div class="table-container">
+                        <table class="styled-table colorful-table" width="1000px" border="1px">
+                            <thead>
+                                <tr>
+                                    <th>GOVERNMENT BODY</th>
+                                    <th>NUMBER</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>FIRE DEPARTMENT</td>
+                                    <td>101</td>
+                                </tr>
+                                <tr>
+                                    <td>POLICE</td>
+                                    <td>100</td>
+                                </tr>
+                                <tr>
+                                    <td>AMBULANCE</td>
+                                    <td>108</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>    
+</body>
+</html>
