@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # **🔥 Fire Prediction System using IoT Framework**
 ![Fire Prediction Banner](./images/final_architecture_diagram.png)
 
