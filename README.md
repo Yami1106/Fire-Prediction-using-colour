@@ -1,51 +1,63 @@
 <div align="center">
 
-<pre>
-╔══════════════════════════════════════╗
-║     🔥  Fire-Prediction-using-colour  🔥     ║
-╚══════════════════════════════════════╝
-</pre>
+# Fire Prediction using Color Sensor + ML
 
-## Fire Detection Using Colour Analysis
+![Stars](https://img.shields.io/github/stars/Yami1106/Fire-Prediction-using-colour?style=for-the-badge)
+[![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=jupyter&logoColor=white)](https://jupyter.org)
+[![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
 
-![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white) ![OpenCV](https://img.shields.io/badge/OpenCV-5C3EE8?style=flat&logo=opencv&logoColor=white) ![Jupyter Notebook](https://img.shields.io/badge/Jupyter-F37626?style=flat&logo=jupyter&logoColor=white)
+*Predicting fire hazards early using a color sensor and a neural network — lightweight edge ML + IoT integration.*
 
 </div>
 
 ---
 
-## About
+## Idea
 
-A **fire detection system** that identifies fire regions in images and video streams using colour-based segmentation and machine learning. Processes frames in real time for early fire warning applications.
-
----
-
-## Features
-
-- HSV colour space segmentation for fire/flame regions
-- Morphological filtering to reduce false positives
-- Real-time video stream processing
-- Bounding box localisation of fire regions
+Color changes are an early indicator of fire and smoke. This project trains a neural network on color sensor patterns from fire and non-fire environments, enabling **proactive fire detection** before a flame is fully established — earlier than traditional flame detectors.
 
 ---
 
-## Tech Stack
+## Pipeline
 
-**Python** · **OpenCV** · **NumPy** · **Jupyter Notebook**
-
----
-
-## Tags
-
-`Fire Detection`  `Computer Vision`  `Safety Systems`  `Image Processing`
+```
+Color sensor readings → Feature extraction
+                     → Neural network classifier (fire / no-fire)
+                     → Confidence score → Alert threshold
+```
 
 ---
 
-## Author
+## Dataset
 
-**Ashish (Yami1106)**
-[GitHub](https://github.com/Yami1106) · [Portfolio](https://yamiportfolio.netlify.app/)
+- Collected color sensor readings (R, G, B, Clear, Color temperature, Lux) in controlled environments
+- Two classes: **fire present** / **no fire**
+- Augmented with varied lighting conditions and distances
 
 ---
 
-*Generated with [Automate_contribution](https://github.com/Yami1106/Automate_contribution)*
+## Model
+
+- Lightweight neural network designed for **edge deployment**
+- Binary classification with confidence output
+- Trained and validated in Jupyter Notebook
+
+---
+
+## Results
+
+- High accuracy on held-out test set
+- Demonstrated feasibility of ML-based early fire detection using low-cost color sensors
+- Integrated as the sensing layer of the Fire Aware Smart-Bot
+
+---
+
+## Tech stack
+
+`Python` · `TensorFlow/Keras` · `NumPy` · `Pandas` · `Jupyter Notebook`
+
+---
+
+<div align="center">
+<a href="https://github.com/Yami1106">Ashish Sukumar</a>
+</div>
